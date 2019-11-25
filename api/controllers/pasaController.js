@@ -44,6 +44,10 @@ exports.get_pasa_detalle = function(req, res){
 		})
 		.then(pasan => {
 			let detalles = [];
+			if(pasan.length === 0){
+				res.sendStatus(404);
+				return;
+			}
 			pasan.forEach(pasa => {
 				let detalle = new Object();
 				detalle.nombre_aduana = pasa.aduana.nombre_aduana;
