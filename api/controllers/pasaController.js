@@ -58,12 +58,12 @@ exports.get_pasa_detalle = function(req, res){
 				detalle.descripcion_estado = pasa.estado_paso.descripcion_estado_paso;
 				detalle.info_extra = "";
 				detalle.otras_tasas = parseFloat(pasa.iva.tasa_iva);
-				detalle.info_extra = detalle.info_extra + "\nIVA: " + pasa.iva.tasa_iva*100 + "%";
+				detalle.info_extra = detalle.info_extra + "IVA: " + pasa.iva.tasa_iva*100 + "%\n";
 				detalle.total_recargos = -1;
 				pasa.multa.forEach(multaAux => {
 					detalle.otras_tasas = detalle.otras_tasas + parseFloat(multaAux.tasa_multa);
-					detalle.info_extra = detalle.info_extra + "\nMulta: " + multaAux.tipo_multum.nombre_tipo_multa;
-					detalle.info_extra = detalle.info_extra + "\nPorcentaje: " + multaAux.tasa_multa*100 + "%";
+					detalle.info_extra = detalle.info_extra + "Multa: " + multaAux.tipo_multum.nombre_tipo_multa + "\n";
+					detalle.info_extra = detalle.info_extra + "Porcentaje: " + multaAux.tasa_multa*100 + "%\n";
 				});
 				detalles.push(detalle);
 			});
