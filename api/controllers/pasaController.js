@@ -10,6 +10,10 @@ const Aduana = models.aduana;
 const Arancel = models.arancel;
 
 exports.get_pasa_detalle = function(req, res){
+	if(isNaN(parseInt(req.params.id_mercancia))){
+		res.status(400).json({ msg: 'Utilizar parametros numericos'});
+		return;
+	}
 	Pasa.belongsTo(EstadoPaso, {foreignKey: 'id_estado_paso'});
 	EstadoPaso.hasMany(Pasa, {foreignKey: 'id_estado_paso'});
 
